@@ -91,7 +91,7 @@ CMfcAppDoc* CMfcAppView::GetDocument() const // non-debug version is inline
 void CMfcAppView::OnBnClickedButton1()
 {
 	auto doc = GetDocument();
-	doc->SetBarcode(L"");
+	doc->SetSerialNumberBarcode(L"");
 
 	SetText(IDC_EDIT_MODELCODE, doc->GetModelCode().c_str());
 	SetText(IDC_EDIT_SERIALNUMBER, doc->GetSerialNumber().c_str());
@@ -103,7 +103,7 @@ void CMfcAppView::OnBnClickedButton1()
 	{
 		auto barcode = dlg.GetBarcode();
 
-		doc->SetBarcode(barcode.GetString());
+		doc->SetSerialNumberBarcode(barcode.GetString());
 		SetText(IDC_EDIT_MODELCODE, doc->GetModelCode().c_str());
 		SetText(IDC_EDIT_SERIALNUMBER, doc->GetSerialNumber().c_str());
 
