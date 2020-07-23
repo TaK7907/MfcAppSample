@@ -7,7 +7,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace MfcAppTest
 {
-	TEST_CLASS(MfcAppTest)
+	TEST_CLASS(SerialNumberBarcodeDataTest)
 	{
 	public:
 
