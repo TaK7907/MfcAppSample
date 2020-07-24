@@ -54,7 +54,7 @@ void BarcodeInputDialog::OnEnChangeEditBarcode()
 {
 	const CString barcode = WindowTextAccessor::GetText(this, IDC_EDIT_BARCODE);
 
-	if (SerialNumberBarcodeData::ValidateValue(barcode.GetString()))
+	if (SerialNumberBarcodeData::ValidateFormat(barcode.GetString()))
 	{
 		GetDlgItem(IDOK)->EnableWindow(TRUE);
 	}

@@ -8,11 +8,14 @@ class SerialNumberBarcodeData final
 private:
 	std::wstring _barcodeData;
 
+	SerialNumberBarcodeData(const SerialNumberBarcodeData& other) = delete;
+
+
 public:
-	explicit SerialNumberBarcodeData(const std::wstring& barcode);
+	explicit SerialNumberBarcodeData(const std::wstring& data);
 	virtual ~SerialNumberBarcodeData();
 
-	static bool ValidateValue(const std::wstring& value);
+	static bool ValidateFormat(const std::wstring& data);
 
 	const std::wstring GetModelCode() const;
 	const std::wstring GetSerialNumber() const;

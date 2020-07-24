@@ -12,24 +12,26 @@ enum class MatchingPart : int {
 	MaxMatchCount,
 };
 
-SerialNumberBarcodeData::SerialNumberBarcodeData(const std::wstring& barcode)
+
+SerialNumberBarcodeData::SerialNumberBarcodeData(const std::wstring& data)
 {
-	if (!ValidateValue(barcode))
+	if (!ValidateFormat(data))
 		_barcodeData = L"";
 	else
-		_barcodeData = barcode;
+		_barcodeData = data;
 }
+
 
 SerialNumberBarcodeData::~SerialNumberBarcodeData()
 {
 }
 
-bool SerialNumberBarcodeData::ValidateValue(const std::wstring& value)
-{
-	auto result = std::regex_match(value, BarcodeFormat);
 
-	return result;
+bool SerialNumberBarcodeData::ValidateFormat(const std::wstring& data)
+{
+	return std::regex_match(data, BarcodeFormat);
 }
+
 
 const std::wstring SerialNumberBarcodeData::GetModelCode() const
 {

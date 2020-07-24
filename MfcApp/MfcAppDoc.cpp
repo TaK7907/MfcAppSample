@@ -29,9 +29,8 @@ END_MESSAGE_MAP()
 // CMfcAppDoc construction/destruction
 
 CMfcAppDoc::CMfcAppDoc() noexcept
-	: m_BarcodeData(L"")
+	:m_BarcodeData(L"")
 {
-	// TODO: add one-time construction code here
 }
 
 CMfcAppDoc::~CMfcAppDoc()
@@ -136,7 +135,7 @@ void CMfcAppDoc::Dump(CDumpContext& dc) const
 // CMfcAppDoc commands
 
 
-void CMfcAppDoc::SetSerialNumberBarcode(const std::wstring value)
+void CMfcAppDoc::SetSerialNumberBarcode(const std::wstring& value)
 {
 	m_BarcodeData = SerialNumberBarcodeData(value);
 }

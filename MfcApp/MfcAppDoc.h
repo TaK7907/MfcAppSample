@@ -49,7 +49,7 @@ protected:
 private:
 	SerialNumberBarcodeData m_BarcodeData;
 public:
-	void SetSerialNumberBarcode(const std::wstring value);
+	void SetSerialNumberBarcode(const std::wstring& value);
 	const std::wstring GetModelCode() const;
 	const std::wstring GetSerialNumber() const;
 };

@@ -11,32 +11,29 @@ namespace MfcAppTest
 	{
 	public:
 
-		TEST_METHOD(正しい形式)
+		TEST_METHOD(AsExpected)
 		{
-			const std::wstring input{ L"123456--aB3" };
-			SerialNumberBarcodeData sut{ input };
+			auto sut = SerialNumberBarcodeData(L"123456--aB3");
 
-			Assert::AreEqual(input, sut.Get());
+			Assert::AreEqual(L"123456--aB3", sut.Get().c_str());
 			Assert::AreEqual(L"123456", sut.GetSerialNumber().c_str());
 			Assert::AreEqual(L"aB3", sut.GetModelCode().c_str());
 		}
 
-		TEST_METHOD(ハイフン1個不足)
+		TEST_METHOD(BadFormat)
 		{
-			const std::wstring input{ L"123456-Xy4" };
-			SerialNumberBarcodeData sut{ input };
+			auto sut = SerialNumberBarcodeData(L"123456-Xy4");
 
 			Assert::AreEqual(L"", sut.Get().c_str());
 			Assert::AreEqual(L"", sut.GetModelCode().c_str());
 			Assert::AreEqual(L"", sut.GetSerialNumber().c_str());
 		}
 
-		TEST_METHOD(未入力)
+		TEST_METHOD(Empty)
 		{
-			const std::wstring input{ L"" };
-			SerialNumberBarcodeData sut{ input };
+			auto sut = SerialNumberBarcodeData(L"");
 
-			Assert::AreEqual(input, sut.Get());
+			Assert::AreEqual(L"", sut.Get().c_str());
 			Assert::AreEqual(L"", sut.GetModelCode().c_str());
 			Assert::AreEqual(L"", sut.GetSerialNumber().c_str());
 		}
