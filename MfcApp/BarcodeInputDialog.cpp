@@ -5,7 +5,7 @@
 #include "MfcApp.h"
 #include "BarcodeInputDialog.h"
 #include "afxdialogex.h"
-#include "utilities/WindowTextAccessor.h"
+#include "Helpers/WindowTextAccessor.h"
 #include "ValueObjects/SerialNumberBarcodeData.h"
 
 // BarcodeInputDialog dialog

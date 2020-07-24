@@ -13,11 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Utilities">
-      <UniqueIdentifier>{752876a2-491c-42bb-83cd-a5094c73eb90}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ValueObjects">
       <UniqueIdentifier>{72abcc12-f55d-4aa6-b3c8-825c937bd13f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{752876a2-491c-42bb-83cd-a5094c73eb90}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -45,14 +45,14 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="utilities\WindowTextAccessor.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="BarcodeInputDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ValueObjects\SerialNumberBarcodeData.h">
       <Filter>ValueObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Helpers\WindowTextAccessor.h">
+      <Filter>Helpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -71,14 +71,14 @@
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="utilities\WindowTextAccessor.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="BarcodeInputDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ValueObjects\SerialNumberBarcodeData.cpp">
       <Filter>ValueObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Helpers\WindowTextAccessor.cpp">
+      <Filter>Helpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

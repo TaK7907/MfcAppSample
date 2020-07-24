@@ -13,7 +13,7 @@
 #include "MfcAppDoc.h"
 #include "MfcAppView.h"
 #include "BarcodeInputDialog.h"
-#include "utilities/WindowTextAccessor.h"
+#include "Helpers/WindowTextAccessor.h"
 #include "ValueObjects/SerialNumberBarcodeData.h"
 
 #ifdef _DEBUG
