@@ -17,8 +17,9 @@ public:
 
 	static bool ValidateFormat(const std::wstring& data);
 
-	const std::wstring GetModelCode() const;
-	const std::wstring GetSerialNumber() const;
-	const std::wstring Get() const;
+	const std::wstring GetModelCode();
+	const std::wstring GetSerialNumber();
+	const wchar_t* GetSerialNumberPtr();
+	const std::wstring Get();
 };
 

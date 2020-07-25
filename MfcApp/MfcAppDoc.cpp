@@ -11,8 +11,12 @@
 #endif
 
 #include "MfcAppDoc.h"
-#include "AppMessages.h"
 #include <propkey.h>
+#include "AppMessages.h"
+#include "Entities/InspectionResultImpl.h"
+#include <memory>
+
+#include "Entities/Fakes/InspectionResultImplFake.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -31,10 +35,16 @@ END_MESSAGE_MAP()
 CMfcAppDoc::CMfcAppDoc() noexcept
 	:m_BarcodeData(L"")
 {
+	m_InspectionResult = new InspectionResultImpl();
 }
 
 CMfcAppDoc::~CMfcAppDoc()
 {
+	if(m_InspectionResult!=NULL)
+	{
+		delete m_InspectionResult;
+		m_InspectionResult = NULL;
+	}
 }
 
 BOOL CMfcAppDoc::OnNewDocument()
@@ -158,12 +168,26 @@ void CMfcAppDoc::PostMessageToAllViews(UINT message, WPARAM wParam, LPARAM lPara
 	}
 }
 
-const std::wstring CMfcAppDoc::GetModelCode() const
+const std::wstring CMfcAppDoc::GetModelCode()
 {
 	return m_BarcodeData.GetModelCode();
 }
 
-const std::wstring CMfcAppDoc::GetSerialNumber() const
+const std::wstring CMfcAppDoc::GetSerialNumber()
 {
 	return m_BarcodeData.GetSerialNumber();
+}
+
+
+void CMfcAppDoc::ExecuteInspection()
+{
+	// TODO: Add your implementation code here.
+	delete m_InspectionResult;
+	m_InspectionResult = new InspectionResultImplFake();
+}
+
+InspectionResult* CMfcAppDoc::GetInspectionResult()
+{
+	//return static_cast<InspectionResult*>(m_InspectionResult);
+	return m_InspectionResult;
 }

@@ -45,11 +45,16 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedButton1();
+	void ShowInspectionResult(const InspectionResult * result);
+	void ShowInspectionResultItem(const wchar_t* name, const wchar_t* value, const wchar_t* result);
 private:
 	void SetText(const int nID, const CString& text);
 //	void OnBarcodeDataChangedOrig();
 protected:
 	afx_msg LRESULT OnBarcodeDataChanged(WPARAM wParam, LPARAM lParam);
+	void ClearInspectionResultList();
+public:
+	int SetResultListStyle();
 };
 
 #ifndef _DEBUG  // debug version in MfcAppView.cpp

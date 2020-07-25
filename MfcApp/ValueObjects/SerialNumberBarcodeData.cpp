@@ -33,7 +33,7 @@ bool SerialNumberBarcodeData::ValidateFormat(const std::wstring& data)
 }
 
 
-const std::wstring SerialNumberBarcodeData::GetModelCode() const
+const std::wstring SerialNumberBarcodeData::GetModelCode()
 {
 	std::wsmatch subMatch;
 	if (std::regex_search(_barcodeData, subMatch, BarcodeFormat))
@@ -43,7 +43,7 @@ const std::wstring SerialNumberBarcodeData::GetModelCode() const
 }
 
 
-const std::wstring SerialNumberBarcodeData::GetSerialNumber() const
+const std::wstring SerialNumberBarcodeData::GetSerialNumber()
 {
 	std::wsmatch subMatch;
 	if (std::regex_search(_barcodeData, subMatch, BarcodeFormat))
@@ -52,8 +52,16 @@ const std::wstring SerialNumberBarcodeData::GetSerialNumber() const
 		return std::wstring();
 }
 
+const wchar_t* SerialNumberBarcodeData::GetSerialNumberPtr()
+{
+	std::wcmatch subMatch;
+	if (std::regex_search(_barcodeData.c_str(), subMatch, BarcodeFormat))
+		return subMatch[static_cast<std::wcmatch::size_type>(static_cast<int>(MatchingPart::SerialNumber))].str().c_str();
+	else
+		return L"";
+}
 
-const std::wstring SerialNumberBarcodeData::Get() const
+const std::wstring SerialNumberBarcodeData::Get()
 {
 	return _barcodeData;
 }

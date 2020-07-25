@@ -2,6 +2,7 @@
 // MfcAppDoc.h : interface of the CMfcAppDoc class
 //
 #include "ValueObjects/SerialNumberBarcodeData.h"
+#include "Entities/InspectionResult.h"
 
 #pragma once
 
@@ -47,10 +48,14 @@ protected:
 
 private:
 	SerialNumberBarcodeData m_BarcodeData;
+	InspectionResult* m_InspectionResult;
+
 public:
 	void SetSerialNumberBarcode(const std::wstring& value);
 	void PostMessageToAllViews(UINT message);
 	void PostMessageToAllViews(UINT message, WPARAM wParam, LPARAM lParam);
-	const std::wstring GetModelCode() const;
-	const std::wstring GetSerialNumber() const;
+	const std::wstring GetModelCode();
+	const std::wstring GetSerialNumber();
+	void ExecuteInspection();
+	InspectionResult* GetInspectionResult();
 };
