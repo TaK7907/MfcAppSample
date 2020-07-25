@@ -5,7 +5,6 @@
 
 #pragma once
 
-
 class CMfcAppDoc : public CDocument
 {
 protected: // create from serialization only
@@ -50,6 +49,8 @@ private:
 	SerialNumberBarcodeData m_BarcodeData;
 public:
 	void SetSerialNumberBarcode(const std::wstring& value);
+	void PostMessageToAllViews(UINT message);
+	void PostMessageToAllViews(UINT message, WPARAM wParam, LPARAM lParam);
 	const std::wstring GetModelCode() const;
 	const std::wstring GetSerialNumber() const;
 };

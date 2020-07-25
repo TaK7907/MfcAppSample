@@ -11,7 +11,7 @@
 #endif
 
 #include "MfcAppDoc.h"
-
+#include "AppMessages.h"
 #include <propkey.h>
 
 #ifdef _DEBUG
@@ -138,14 +138,30 @@ void CMfcAppDoc::Dump(CDumpContext& dc) const
 void CMfcAppDoc::SetSerialNumberBarcode(const std::wstring& value)
 {
 	m_BarcodeData = SerialNumberBarcodeData(value);
+
+	PostMessageToAllViews(static_cast<UINT>(AppMessages::WM_BARCODE_DATA_CHANGED));
 }
 
+void CMfcAppDoc::PostMessageToAllViews(UINT message)
+{
+	PostMessageToAllViews(message, 0, 0);
+}
+
+void CMfcAppDoc::PostMessageToAllViews(UINT message, WPARAM wParam, LPARAM lParam)
+{
+	auto pos = GetFirstViewPosition();
+	while (pos!=NULL)
+	{
+		auto view = GetNextView(pos);
+		auto hwnd = view->GetSafeHwnd();
+		::PostMessage(hwnd, message, wParam, lParam);
+	}
+}
 
 const std::wstring CMfcAppDoc::GetModelCode() const
 {
 	return m_BarcodeData.GetModelCode();
 }
-
 
 const std::wstring CMfcAppDoc::GetSerialNumber() const
 {

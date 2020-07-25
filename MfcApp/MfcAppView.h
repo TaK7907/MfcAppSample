@@ -47,6 +47,9 @@ public:
 	afx_msg void OnBnClickedButton1();
 private:
 	void SetText(const int nID, const CString& text);
+//	void OnBarcodeDataChangedOrig();
+protected:
+	afx_msg LRESULT OnBarcodeDataChanged(WPARAM wParam, LPARAM lParam);
 };
 
 #ifndef _DEBUG  // debug version in MfcAppView.cpp

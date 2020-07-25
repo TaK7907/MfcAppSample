@@ -15,6 +15,7 @@
 #include "BarcodeInputDialog.h"
 #include "Helpers/WindowTextAccessor.h"
 #include "ValueObjects/SerialNumberBarcodeData.h"
+#include "AppMessages.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -27,6 +28,7 @@ IMPLEMENT_DYNCREATE(CMfcAppView, CFormView)
 
 BEGIN_MESSAGE_MAP(CMfcAppView, CFormView)
 	ON_BN_CLICKED(IDC_BUTTON1, &CMfcAppView::OnBnClickedButton1)
+	ON_MESSAGE(static_cast<int>(AppMessages::WM_BARCODE_DATA_CHANGED), &CMfcAppView::OnBarcodeDataChanged)
 END_MESSAGE_MAP()
 
 // CMfcAppView construction/destruction
@@ -60,7 +62,6 @@ void CMfcAppView::OnInitialUpdate()
 	CFormView::OnInitialUpdate();
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();
-
 }
 
 
@@ -87,14 +88,10 @@ CMfcAppDoc* CMfcAppView::GetDocument() const // non-debug version is inline
 
 // CMfcAppView message handlers
 
-
 void CMfcAppView::OnBnClickedButton1()
 {
 	auto doc = GetDocument();
 	doc->SetSerialNumberBarcode(L"");
-
-	SetText(IDC_EDIT_MODELCODE, doc->GetModelCode().c_str());
-	SetText(IDC_EDIT_SERIALNUMBER, doc->GetSerialNumber().c_str());
 
 	BarcodeInputDialog dlg;
 	auto r = dlg.DoModal();
@@ -104,15 +101,20 @@ void CMfcAppView::OnBnClickedButton1()
 		auto barcode = dlg.GetBarcode();
 
 		doc->SetSerialNumberBarcode(barcode.GetString());
-		SetText(IDC_EDIT_MODELCODE, doc->GetModelCode().c_str());
-		SetText(IDC_EDIT_SERIALNUMBER, doc->GetSerialNumber().c_str());
-
-
 	}
 }
-
 
 void CMfcAppView::SetText(const int nID, const CString& text)
 {
 	WindowTextAccessor::SetText(this, nID, text);
+}
+
+afx_msg LRESULT CMfcAppView::OnBarcodeDataChanged(WPARAM wParam, LPARAM lParam)
+{
+	auto doc = GetDocument();
+
+	SetText(IDC_EDIT_MODELCODE, doc->GetModelCode().c_str());
+	SetText(IDC_EDIT_SERIALNUMBER, doc->GetSerialNumber().c_str());
+
+	return 0;
 }
